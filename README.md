@@ -1,8 +1,14 @@
-## Nagios Discord Notifications
+# Nagios Discord Notifications
 
-This simply takes Nagios environment variables ([see here](https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/macrolist.html)), and builds a quick JSON block to send to a Discord webhook.
+This simply takes [Nagios environment variables](https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/4/en/macrolist.html)), and builds a quick JSON block to send to a Discord webhook.
 
-Fill out the two empty variables at the top of the scripts, and place them in your Nagios plugins directory.
+Override the four empty variables on top of scripts in discord-conf.sh, and place all of them in your Nagios plugins directory.
+
+You should replace @PLUGINS_PATH@ by your Nagios plugins path
+```
+sed -e 's;@PLUGINS_PATH@;/usr/lib/nagios/plugins;g' send-discord-host.sh
+sed -e 's;@PLUGINS_PATH@;/usr/lib/nagios/plugins;g' send-discord-service.sh
+```
 
 You'll want to add some commands, to be able to call the notify scripts, say in your `commands.cfg`:
 
